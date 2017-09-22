@@ -1,0 +1,50 @@
+
+<html>
+<head>
+  
+  <title>Google Maps Multiple Markers</title>
+  <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+
+</head>
+
+<body>
+ 
+  <div id="map" style="height: 600px; width: 900px;">
+</div>
+<script type="text/javascript">
+    var locations = [
+      ['kakinada', 16.9891, 82.2475, 1],
+      ['Rajahmundry', 17.0005, 81.8040, 2],
+      ['Annavaram', 17.2793, 82.3967, 3],
+      ['Visakhapatnam', 17.6868, 83.2185, 4],
+     
+    ];
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 10,
+      center: new google.maps.LatLng(17.3213,  82.0407),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+      
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) { 
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map
+      });
+
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
+    
+
+
+  </script>
+</body>
+</html>
