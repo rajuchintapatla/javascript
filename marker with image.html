@@ -1,0 +1,97 @@
+
+<html>
+<head>
+  
+  <title>Google Maps Multiple Markers</title>
+  <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+<style type="text/css">
+  .a{
+    
+  }
+</style>
+</head>
+
+<body>
+ 
+  <div id="map" style="height: 600px; width: 900px;">
+</div>
+<script type="text/javascript">
+    var locations = [
+      ['<div id="">'+
+            '<div id="">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading">Kakinada</h1>'+
+            '<div id="bodyContent">'+
+            '<img src="https://im0.r.worldssl.net/kjfdsuiemjvcyb/0/384286/0/cct.jpg " style= height:300px;width:500px; center>'+
+            '<p><b>Kakinada</b>,Kakinandivada, a village near the present Kakinada was a Dutch settlement'+
+            ' They also used to store and export Coconut products and, hence, the name Co–canada.'+
+            ' The British East India Company also called it with the same name when they established the first Canadian Baptist Mission. After Independence, it finally got the name Kakinada.</p>'+
+            '<p>Attribution: Kakinada, <a href="https://en.wikipedia.org/wiki/Kakinada">'+
+            'https://en.wikipedia.org/wiki/Kakinada</a></p>'+
+            '</div>'+
+            '</div>', 16.9891, 82.2475, 1],
+      ['<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading">Rajahmundry</h1>'+
+            '<div id="bodyContent">'+
+            '<img src="https://upload.wikimedia.org/wikipedia/commons/d/df/Rajahmundry_Railway_station_01.JPG" style= height:300px;width:500px;>'+
+            '<p><b>Rajahmundry</b>, Rajahmundry is a commercial hub for east and west Godavari districts.[29] It is one of the largest bullion markets in India which consists hundreds of gold, silver and platinum shops throughout the city.</p>'+
+            '<p>Attribution: Rajahmundry, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+            'https://en.wikipedia.org/w/index.php?title=Uluru</a></p>'+
+            '</div>'+
+            '</div>', 17.0005, 81.8040, 2],
+      ['<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading">Annavaram</h1>'+
+            '<div id="bodyContent">'+
+            '<img src="http://www.templedairy.in/wp-content/uploads/2015/12/maxresdefault-1-1.jpg" style= height:300px;width:500px;>'+
+            '<p><b>Annavaram</b>, Anna translates to food in the local language and the place was known for distribution of food, which might have given the settlement its name as Annavaram. Another derivative was from Anina varam, possessing boon from the lord, would have also given the name.[4]</p>'+
+            '<p>Attribution: Annavaram, <a href="https://en.wikipedia.org/wiki/Annavaram">'+
+            'https://en.wikipedia.org/wiki/Annavaram</a> </p>'+
+            '</div>'+
+            '</div>', 17.2793, 82.3967, 3],
+      ['<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading">Visakhapatnam</h1>'+
+            '<div id="bodyContent">'+
+            '<img src="http://www.dredgingtoday.com/wp-content/uploads/2013/04/Visakhapatnam-Port-Development-Plan-Approved.jpg" style= height:300px;width:500px;>'+
+            '<p><b>Visakhapatnam</b>, Rajahmundry is a commercial hub for east and west Godavari districts.[29] It is one of the largest bullion markets in India which consists hundreds of gold, silver and platinum shops throughout the city.</p>'+
+            '<p>Attribution: Visakhapatnam, <a href="https://en.wikipedia.org/wiki/Visakhapatnam">'+
+            'https://en.wikipedia.org/wiki/Visakhapatnam</a> </p>'+
+            '</div>'+
+            '</div>', 17.6868, 83.2185, 4],
+     
+    ];
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 10,
+      center: new google.maps.LatLng(17.3213,  82.0407),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+      
+      var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) { 
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map
+      });
+
+     google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
+    
+
+
+  </script>
+</body>
+</html>
